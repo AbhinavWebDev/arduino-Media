@@ -1,0 +1,64 @@
+.Post{
+display: flex;
+flex-direction: column;
+padding: 1rem;
+background-color: var(--cardColor);
+border-radius: 1rem;
+gap:1rem;
+margin-bottom: 1.5rem;
+
+}
+
+.Post>img{
+    width: 100%;
+    max-height: 28rem;
+    object-fit: cover;
+    border-radius:0.5rem;
+}
+
+.PostReact{
+    display: flex;
+    align-items: flex-start;
+    gap:1.5rem;
+}
+
+.authorImage{
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 50%;
+    margin-right: 10px;
+
+}
+
+
+.author{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    
+}
+.author>div{
+    display: flex;
+    gap:10px
+}
+.name{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+}
+
+.name>span:nth-of-type(1){
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 600px) {
+.authorImage{
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    margin-right: 5px;
+
+}
+}

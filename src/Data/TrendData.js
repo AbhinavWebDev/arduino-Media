@@ -1,0 +1,30 @@
+export const TrendData=[
+    {
+        name:'Abhinav',
+        shares:197,
+    },
+    {
+        name:'Messi',
+        shares:927,
+    },
+    {
+        name:'KBD',
+        shares:397,
+    },
+    {
+        name:'Google',
+        shares:597,
+    },
+    {
+        name:'Japan',
+        shares:897,
+    },
+    {
+        name:'Abhinav',
+        shares:97,
+    },
+    {
+        name:'Abhinav',
+        shares:97,
+    },
+]

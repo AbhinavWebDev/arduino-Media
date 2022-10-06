@@ -1,0 +1,117 @@
+:root {
+    --yellow: #f5c32c;
+    --orange: #fca61f;
+    --black: #242d49;
+    --gray: rgba(36, 45, 73, 0.65);
+    --profileShadow: 0px 4px 17px 2px rgba(0, 0, 0, 0.25);
+    --hrColor: #cfcdcd;
+    --cardColor: rgba(255, 255, 255, 0.64);
+    --buttonBg: linear-gradient(98.63deg, #f9a225 0%, #f95f35 100%);
+    --inputColor: rgba(40, 52, 62, 0.07);
+    --photo: #4CB256;
+    --video: #4A4EB7;
+    --location: #EF5757;
+  --shedule: #E1AE4A;
+  }
+.ProfileCard{
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 1rem;
+    overflow-x:clip ;
+    background: var(--cardColor);
+}
+
+
+
+.ProfileImages{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.ProfileImages>img:nth-of-type(1){
+    width:100%;
+}
+.ProfileImages>img:nth-of-type(2){
+    width: 6rem;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -3rem;
+    box-shadow: var(--profileShadow);
+}
+.ProfileName{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+
+}
+.ProfileName>span:nth-of-type(1)
+{
+font-weight: bold;
+}
+.FollowStatus{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+.FollowStatus > hr{
+    width: 85%;
+    border: 1px solid var(--hrColor);
+    
+}
+.FollowStatus> div{
+    display: flex;
+    gap:1rem;
+    width: 80%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.Follow{
+    display: flex;
+    flex-direction: column;
+    gap:0.4rem;
+    align-items: center;
+    justify-content: center;
+}
+.Follow > span:nth-of-type(1){
+    color: var(--gray);
+    font-weight: bold;
+}
+.Follow > span:nth-of-type(2){
+    color: var(--gray);
+    font-size: 13px;
+}
+.Followers{
+    display: flex;
+    flex-direction: column;
+    gap:0.4rem;
+    align-items: center;
+    justify-content: center;
+}
+.Followers > span:nth-of-type(1){
+    color: var(--gray);
+    font-weight: bold;
+}
+.Followers > span:nth-of-type(2){
+    color: var(--gray);
+    font-size: 13px;
+}
+.Vl{
+    height: 150%;
+    border-left:2px solid var(--hrColor) ;
+}
+.ProfileCard > span{
+font-weight: bold;
+color: #e03c6c;
+align-self: center;
+margin-bottom: 1rem;
+cursor: pointer;
+}

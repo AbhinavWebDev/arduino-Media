@@ -1,0 +1,358 @@
+/* .Auth{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap: 4rem;
+    position: relative;
+}
+
+.Auth>div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.a-left{
+    gap:2rem;
+}
+
+a.-left>img{
+    width:4rem;
+    height: 4rem;
+}
+
+.Webname>h1{
+    font-size: 3rem;
+    background-color: #e03c6c;
+    background-image: rgb(18, 14, 14);
+    background-size: 100%;
+    background-repeat: repeat;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+}
+.Webname>h6{
+    font-size: 0.85rem;
+}
+.InfoForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.InfoInput{
+    border:none;
+    outline: none;
+    background-color: var(--inputColor);
+    border-radius: 8px;
+    padding: 20px;
+    flex: 1;
+}
+
+.InfoForm>div{
+    display: flex;
+    gap: 1rem;
+    height: 2rem;
+    width: 90%;
+}
+
+.infoButton{
+    width: 6rem;
+    height: 2rem;
+    align-self: flex-end;
+}
+
+.authForm{
+    background-color: var(--cardColor);
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.authForm>div{
+    width:100%;
+    align-items: center;
+    justify-content: center;
+} */
+
+/* 
+
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    min-height: 95vh;
+    background-color: #D9AFD9;
+background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);
+
+}
+
+.card {
+    height: auto;
+    width: auto;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    font-family: 'Source Sans Pro', sans-serif
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center
+}
+
+.image img {
+    width: 60px
+}
+
+.image p {
+    margin-top: 3px;
+    color: #969696
+}
+
+.google {
+    margin-top: 20px;
+    position: relative
+}
+
+.google button {
+    width: 100%;
+    height: 45px;
+    cursor: pointer;
+    transition: all 0.5s;
+    color: #696969;
+    font-weight: 600;
+    background-color: #fff;
+    border: 1px solid #ececec;
+    border-radius: 5px
+}
+
+.google button img {
+    width: 20px;
+    position: absolute;
+    top: 12px;
+    left: 60px
+}
+
+.google button:hover {
+    background-color: #f1ebeb !important
+}
+
+.or {
+    margin-top: -11px;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+hr {
+    margin-top: 20px;
+    border: none;
+    border-top: 1px solid #ccc
+}
+
+.or p {
+    font-size: 14px;
+    padding: 0 3px;
+    background-color: #fff
+}
+
+.input {
+    margin-top: 30px;
+    position: relative;
+    display: flex;
+    gap: 2rem;
+    
+}
+
+input[type="text"] {
+    width: 100%;
+    border-radius: 5px;
+    transition: all 0.3s;
+    height: 45px;
+    font-size: 14px;
+    padding: 0 5px;
+    border: 1px solid #ccc;
+    outline: 0
+}
+
+input[type="password"] {
+    width: 100%;
+    border-radius: 5px;
+    transition: all 0.3s;
+    height: 45px;
+    font-size: 14px;
+    padding: 0 5px;
+    border: 1px solid #ccc;
+    outline: 0
+}
+
+.input span {
+    transition: all 0.1s;
+    position: absolute;
+    top: -18px;
+    left: 5px;
+    font-size: 14px
+}
+
+input:focus {
+    border: 1px solid blue !important
+}
+
+input:focus+span {
+    color: blue !important;
+    font-weight: 600
+}
+
+.input p {
+    margin-top: 3px;
+    font-size: 14px;
+    font-weight: 900;
+    color: red
+}
+
+.input p i {
+    margin-right: 5px
+}
+
+.input .fa-eye-slash {
+    position: absolute;
+    top: 14px;
+    right: 8px;
+    cursor: pointer;
+    color: #7e7e7e
+}
+
+.fa-eye {
+    position: absolute;
+    top: 14px;
+    right: 8px;
+    cursor: pointer;
+    color: #7e7e7e
+}
+
+input:focus~.fa-eye-slash {
+    color: rgb(175, 175, 195) !important
+}
+
+.dont {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px
+}
+
+.dont a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700
+}
+
+.LogInbutton {
+    margin-top: 20px
+}
+
+.LogInbutton button {
+    height: 45px;
+    width: 100%;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s;
+    background-color: #2a2626;
+    font-size: 14px;
+    margin-bottom: 20px
+}
+
+.LogInbutton button:hover {
+    background-color: #000 !important
+}
+
+.fa-long-arrow-right {
+    margin-left: 5px
+}
+
+.warning {
+    border: 1px solid red !important
+}
+
+.d-none {
+    display: none !important
+} */
+
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.Signup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    min-height: 95vh;
+    background-color: #D9AFD9;
+background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);
+
+}
+
+.card {
+    height: auto;
+    width: 325px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    font-family: 'Source Sans Pro', sans-serif
+}
+.image {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+   gap: 10px;
+}
+.image img {
+    width: 60px
+}
+
+.image p {
+    margin-top: 3px;
+    color: #969696
+}
+
+
+.dont {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px
+}
+
+.dont a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700
+}
+
+
+
+
+
