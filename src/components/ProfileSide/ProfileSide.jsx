@@ -8,7 +8,7 @@ import "./ProfileSide.css";
 export default function ProfileSide() {
   return (
     <div className="ProfileSide">
-      <LogoSearch />
+
       <ProfileCard />
       <TrendCard />
     </div>

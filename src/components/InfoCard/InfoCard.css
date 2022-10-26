@@ -19,12 +19,26 @@
     cursor: pointer;
 }
 
+.Delete-button{
+    padding-left: 20px;
+    padding-right: 20px;
+height: 2rem;
+align-self: flex-end;
+
+}
+
+
 .Logout-button{
     padding-left: 20px;
     padding-right: 20px;
 height: 2rem;
 align-self: flex-end;
 
+}
+
+.info-button{
+ gap: 1rem;
+ display: flex;
 }
 
 

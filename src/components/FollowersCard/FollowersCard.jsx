@@ -1,29 +1,36 @@
-import React from 'react'
-import './FollowersCard.css'
-import {Followers} from '../../Data/FollowersData'
+import React, { useState, useEffect } from "react";
+import "./FollowersCard.css";
+import User from "../User/User";
+import { useSelector } from "react-redux";
+import { getAllUser } from "../../api/UserRequest";
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 
-const FollowersCard=()=> {
+const FollowersCard = () => {
+  const [persons, setPersons] = useState([]);
+  const { user } = useSelector((state) => state.authReducer.authData);
+  useEffect(() => {
+    const fetchPersons = async () => {
+      const { data } = await getAllUser();
+      setPersons(data);
+    };
+    fetchPersons();
+  }, []);
   return (
-    <div className='FollowersCard'>
-        <h3>Suggestions</h3>
+    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+      <ListItem style={{padding:'10px', justifyContent: 'center'}} >
+    <div className="FollowersCard">
+      <h3>People You may know</h3>
 
-        {Followers.map((follower,id)=>{
-            return(
-                <div className='follower'>
-                    <div>
-                        <img src={follower.img} alt='' className='followerImage'/>
-                        <div className='name'>
-                            <span>{follower.name}</span>
-                            <span>@{follower.username}</span>
-                        </div>
-                    </div>
-                    <button className='button fc-button'>Follow</button>
-                </div>
-            )
-        })}
-
+      {persons.map((person, id) => {
+        if (person._id !== user._id) {
+          return <User person={person} key={id} />;
+        }
+      })}
     </div>
-  )
-}
+    </ListItem>
+    </List>
+  );
+};
 
-export default FollowersCard
+export default FollowersCard;

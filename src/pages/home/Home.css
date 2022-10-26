@@ -1,9 +1,12 @@
 .Home {
     position: relative;
     display: grid;
-    grid-template-columns: 18rem auto 20rem;
+    grid-template-columns: 20rem auto 20rem;
     gap: 1rem;
+    padding: 1rem 1rem;
   }
+
+  
 
   /* @media (max-width: 767px) {
     .RightSide {
@@ -52,8 +55,14 @@
     .Home {
       position: relative;
     display: grid;
-    grid-template-columns: 18rem auto 20rem;
+    grid-template-columns: 20rem auto 20rem;
     gap: 1rem;
     }
   }
+
+  /* @media only screen and (min-width: 600px) {
+    .Navbar {
+      display: none;
+    }
+} */
   

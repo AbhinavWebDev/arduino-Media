@@ -1,3 +1,4 @@
+
 :root {
   --yellow: #f5c32c;
   --orange: #fca61f;
@@ -18,7 +19,7 @@
   overflow: hidden;
   color:var(--black);
   background: #f3f3f3;
-  padding: 1rem 1rem;
+  
 }
 
 .blur{
@@ -33,6 +34,7 @@
   display: flex;
   align-items: center;
   justify-items: center;
+  justify-content: center;
   color: #f3f3f3;
   border: none;
   border-radius: 0.5rem;
@@ -45,6 +47,11 @@
   color: #e03c6c;
   background: transparent;
   border: 2px solid #e03c6c ;
+}
+
+.button:disabled{
+  background: silver;
+  pointer-events: none;
 }
 
 ::-webkit-scrollbar{

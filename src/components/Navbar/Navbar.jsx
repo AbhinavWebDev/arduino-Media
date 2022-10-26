@@ -1,66 +1,78 @@
-import React, { useState, useRef } from "react";
-import ProfileImage from "../../img/Profile.jpg";
-import "./Navbar.css";
-import { UilPlusCircle } from "@iconscout/react-unicons";
-import { UilHome } from "@iconscout/react-unicons";
-import { UilChat } from "@iconscout/react-unicons";
-import { UilHeart } from "@iconscout/react-unicons";
-import { UilTimes } from "@iconscout/react-unicons";
-function Navbar() {
-  const [image, setImage] = useState(null);
-  const imageRef = useRef();
-  const onImageChange = (event) => {
-    if (event.target.files && event.target.files[0]) {
-      let img = event.target.files[0];
-      setImage({
-        image: URL.createObjectURL(img),
-      });
-    }
-  };
-  return (
-    <div className="Navdown">
-      <div>
-        <div className="PostOption">
-          <div className="Option" style={{ color: "var(--video)" }}>
-            <UilHome />
-          </div>
-          <div className="Option" style={{ color: "var(--location)" }}>
-            <UilChat />
-          </div>
-          <div
-            className="Option"
-            style={{ color: "var(--photo)" }}
-            onClick={() => imageRef.current.click()}
-          >
-            <UilPlusCircle />
-          </div>
-          <div className="Option" style={{ color: "var(--shedule)" }}>
-            <UilHeart />
-          </div>
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import Paper from '@mui/material/Paper';
+import Fab from '@mui/material/Fab';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemText from '@mui/material/ListItemText';
+import ListSubheader from '@mui/material/ListSubheader';
+import Avatar from '@mui/material/Avatar';
+import MenuIcon from '@mui/icons-material/Menu';
+import AddIcon from '@mui/icons-material/Add';
+import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
+import MoreIcon from '@mui/icons-material/MoreVert';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import ChatBubbleOutlineRoundedIcon from '@mui/icons-material/ChatBubbleOutlineRounded';
+import ProfileLogo from '../../img/Profile.jpg'
+import { Link } from 'react-router-dom';
+import { grey } from '@mui/material/colors';
+import { useSelector } from 'react-redux';
 
-          <div style={{ display: "none" }}>
-            <input
-              type="file"
-              name="myImage"
-              ref={imageRef}
-              onChange={onImageChange}
-            />
-          </div>
-          
-        </div>
-        {image && (
-          <div className="previewImage">
-            <UilTimes onClick={() => setImage(null)} />
-            <img src={image.image} />
-            <button className="button ps-button">
-            Share
-            </button>
-          </div>
-        )}
-      </div>
-      <img src={ProfileImage} alt="" />
-    </div>
+
+
+
+
+const StyledFab = styled(Fab)({
+  position: 'absolute',
+  zIndex: 1,
+  top: -33 ,
+  left: 0,
+  right: 0,
+  margin: '0 auto',
+});
+
+export default function BottomAppBar() {
+  const { user } = useSelector((state) => state.authReducer.authData);
+
+  return (
+    <React.Fragment>
+      <CssBaseline />
+      
+      <AppBar style={{ color: 'white' }} position="fixed"  sx={{ display: { xs: 'flex',sm:'none' },top: 'auto', bottom: 0 }}>
+        <Toolbar>
+       
+          <Link style={{ textDecoration: "none", color: "inherit" }} to="../home"> <HomeOutlinedIcon sx={{ mr: 2,fontSize: 35  }}/> </Link>
+         
+
+        
+          <Link style={{ textDecoration: "none", color: "inherit" }} to="../chat">
+              <ChatBubbleOutlineRoundedIcon sx={{ mr: 2, fontSize: 33}} />
+        </Link>
+       
+          <StyledFab color="secondary" aria-label="add">
+            <AddIcon />
+          </StyledFab>
+          <Box sx={{ flexGrow: 1 }} />
+          <IconButton  color="inherit">
+            <FavoriteBorderRoundedIcon sx={{ fontSize: 33}} />
+          </IconButton>
+          <IconButton color="inherit">
+          <Link
+            style={{ textDecoration: "none", color: "inherit" }}
+            to={`/profile/${user._id}`}
+          >
+           <Avatar alt="Remy Sharp" src={ProfileLogo} />
+          </Link>
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+    </React.Fragment>
   );
 }
-
-export default Navbar;

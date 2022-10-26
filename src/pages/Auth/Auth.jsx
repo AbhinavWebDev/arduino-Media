@@ -1,62 +1,147 @@
-import { useForm } from "@mantine/form";
-import { PasswordInput, TextInput, Button } from "@mantine/core";
+import React from "react";
 import "./Auth.css";
-import Logo from "../../img/Logo_ae.svg";
+import Logo from "../../img/Logo.png";
+import { useState } from "react";
+import {useDispatch, useSelector} from 'react-redux'
+import { logIn, signUp } from "../../actions/AuthAction";
 
-export function Auth() {
-  const form = useForm({
-    initialValues: {
+export const Auth = () => {
+  const dispatch = useDispatch()
+  const loading = useSelector((state)=>state.authReducer.loading)
+  const [isSignUp, setisSignUp] = useState(false);
 
-      email: "",
-      password: "",
-
-    },
-
-    // functions will be used to validate values at corresponding key
-    validate: {
-      
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
-      password: (value) =>
-        value.length < 6 ? "Name must have at least 6 letters" : null,
-    },
+  const [data, setData] = useState({
+    firstname: "",
+    lastname: "",
+    username: "",
+    password: "",
+    confirmpassword: "",
   });
+  const [confirmpassword, setconfirmpassword] = useState(true);
+
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  }
+    const handleSubmit = (e) => {
+      e.preventDefault()
+
+      
+
+      if (isSignUp) {
+        data.password===data.confirmpassword ? dispatch(signUp(data)) :setconfirmpassword(false)
+      
+    }
+    else
+    {
+      dispatch(logIn(data))
+    }
+  };
+
+  const resetForm=()=>{
+    setconfirmpassword(true);
+    setData({
+      firstname: "",
+    lastname: "",
+    username: "",
+    password: "",
+    confirmpassword: "",
+    })
+  }
 
   return (
-    <div className="Signup">
-      <div className="card">
-        <div className="image">
-          <img src={Logo} alt="" />
-          <h3>arduino Media</h3>
-          <p>Welcome Back</p>
+    // Left Side
+    <div className="Auth">
+      <div className="a-left">
+        <img src={Logo} alt="" />
+        <div className="Webname">
+          <h1>arduino Media</h1>
+          <h6>Explore the ideas throughout the world</h6>
         </div>
-
-        <form onSubmit={form.onSubmit(console.log)}>
-          
-          <TextInput
-            mt="sm"
-            label="Email"
-            placeholder="Email"
-            {...form.getInputProps("email")}
-          />
+      </div>
+      {/* Right Side  */}
+      <div className="a-right">
+        <form className="InfoForm authForm"  onSubmit={handleSubmit} >
          
+          <h3>{isSignUp ? "Sign up" : "Log In"} </h3>
 
-          <PasswordInput
-            label="Password"
-            placeholder="Password"
-            {...form.getInputProps("password")}
-          />
+          {isSignUp && (
+            <div>
+              <input
+                type="text"
+                placeholder="First Name"
+                className="InfoInput"
+                name="firstname"
+                onChange={handleChange}
+                value={data.firstname}
+              />
+              <input
+                type="text"
+                placeholder="Last Name"
+                className="InfoInput"
+                name="lastname"
+                onChange={handleChange}
+                value={data.lastname}
+              />
+            </div>
+          )}
 
-          
-          <div className="dont">
-            <a href="#">Don't have an account?</a>
-            <a href="#">Forgot Password?</a>
+          <div>
+            <input
+              type="text"
+              placeholder="Username"
+              className="InfoInput"
+              name="username"
+              onChange={handleChange}
+              value={data.username}
+              
+            />
           </div>
-
-          <Button type="submit" mt="sm">
-            Submit
-          </Button>
+          <div>
+            <input
+              type="password"
+              placeholder="Password"
+              className="InfoInput"
+              name="password"
+              onChange={handleChange}
+              value={data.password}
+            />
+            {isSignUp && (
+              <input
+                type="password"
+                placeholder="re-enter password"
+                className="InfoInput"
+                name="confirmpassword"
+                onChange={handleChange}
+                value={data.confirmpassword}
+              />
+            )}
+          </div>
+          <span
+            style={{
+              display: confirmpassword ? "none" : "block",
+              color: "red",
+              fontSize: "14px",
+              alignSelf: "flex-end",
+              marginRight: "5px",
+            }}
+          >
+            Password mismatch
+          </span>
+          <div>
+            <span
+              style={{ fontSize: "12px", cursor: "pointer" }}
+              onClick={() => {setisSignUp((prev) => !prev);resetForm()}}
+            >
+              {isSignUp
+                ? "Already have an account. LOGIN!"
+                : "Don't have an account. Signup!"}
+            </span>
+          </div>
+          <button className="button infoButton" type="submit" disabled={loading}>
+            {loading? "Loading....":isSignUp ? "Signup" : "Log In"}
+          </button>
         </form>
       </div>
     </div>
   );
-}
+};
