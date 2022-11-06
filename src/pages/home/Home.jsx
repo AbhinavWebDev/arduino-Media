@@ -7,6 +7,7 @@ import LogoSearch from '../../components/LogoSearch/LogoSearch'
 import Navbar from '../../components/Navbar/Navbar'
 import Chatlist from '../../components/Demo Test/Chatlist'
 import LeftChat from '../../components/ProfileSide/ProfileSide'
+import FollowersCard from '../../components/FollowersCard/FollowersCard'
 
 
 
@@ -30,7 +31,7 @@ function home() {
             <PostSide/>
         </div>
         <div className="RightSide">
-            <RightSide/>
+        <FollowersCard />
         </div>
 
         

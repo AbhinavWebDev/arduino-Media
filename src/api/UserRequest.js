@@ -15,8 +15,11 @@ API.interceptors.request.use((req) => {
 
 
 export const getUser = (userId) => API.get(`/user/${userId}`)
+export const getUserList = (userId) => API.get(`/user/${userId}/list`)
 
-export const updateUser = (id, formData) => API.put(`/user/${id}`, formData)
+export const getFollowingList = (userId) => API.get(`/user/${userId}/followingList`)
+
+export const updateUser = (formData) => API.put(`/user`, formData)
 
 export const getAllUser = () => API.get('/user')
 

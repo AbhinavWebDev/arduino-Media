@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { getUser } from "../../api/UserRequest";
 
+
 const Conversation = ({ data, currentUser, online }) => {
   const [userData, setUserData] = useState(null);
   useEffect(() => {
@@ -33,7 +34,7 @@ const Conversation = ({ data, currentUser, online }) => {
           />
           <div className="name" style={{ fontSize: "0.8rem" }}>
             <span>
-              {userData?.firstname} {userData?.lastname}
+              {userData?.firstName} {userData?.lastLame}
             </span>
             <span>{online ? "Online" : "Offline"}</span>
           </div>

@@ -1,9 +1,10 @@
 .Home {
     position: relative;
     display: grid;
-    grid-template-columns: 20rem auto 20rem;
+    grid-template-columns: 40rem auto 20rem;
     gap: 1rem;
     padding: 1rem 1rem;
+    height: 90vh;
   }
 
   

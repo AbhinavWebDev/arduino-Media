@@ -6,6 +6,10 @@ import "./ChatBox.css";
 import { format } from "timeago.js";
 import InputEmoji from "react-input-emoji";
 import { useRef } from "react";
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import SendIcon from '@mui/icons-material/Send';
+import Avatar from '@mui/material/Avatar';
+import { pink } from '@mui/material/colors';
 
 const ChatBox = ({ chat, currentUser, setSendMessage, recieveMessage }) => {
   const [userData, setUserData] = useState(null);
@@ -25,7 +29,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage, recieveMessage }) => {
       try {
         const { data } = await getUser(userId);
         setUserData(data);
-        console.log(data);
+       
       } catch (error) {
         console.log(error);
       }
@@ -37,7 +41,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage, recieveMessage }) => {
     const fetchMessages = async () => {
       try {
         const { data } = await getMessages(chat._id);
-        console.log("msg", data);
+       
         setMessages(data);
       } catch (error) {
         console.log(error);
@@ -84,6 +88,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage, recieveMessage }) => {
             <div className="chat-header">
               <div className="follower">
                 <div>
+                  < ChevronLeftIcon/>
                   <img
                     src={
                       userData?.profilePicture
@@ -124,10 +129,11 @@ const ChatBox = ({ chat, currentUser, setSendMessage, recieveMessage }) => {
               ))}
             </div>
             <div className="chat-sender">
-              <div>+</div>
+              {/* <div>+</div> */}
               <InputEmoji value={newMessage} onChange={handleChange} />
-              <div className="send-button button" onClick={handleSend}>
-                Send
+              <div onClick={handleSend}>
+              <Avatar sx={{ bgcolor: pink[500] ,spacing:2 }}><SendIcon/></Avatar>
+              
               </div>
             </div>
           </>

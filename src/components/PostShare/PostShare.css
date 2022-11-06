@@ -1,5 +1,5 @@
 .PostShare{
-    display: flex;
+    display: flex ;
     gap: 1rem;
     background-color: var(--cardColor) ;
     padding: 1rem;
@@ -15,11 +15,28 @@
 
 .PostShare>div{
     display: flex;
+    flex-direction: row;
+    width: 90%;
+    gap: 1rem;
+
+}
+.PostUpdate>div{
+    display: flex;
     flex-direction: column;
     width: 90%;
     gap: 1rem;
 
 }
+
+.PostUpdate>div>input{
+    background-color: var(--inputColor);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 17px;
+    border: none;
+    outline: none;
+}
+
 .PostShare>div>input{
     background-color: var(--inputColor);
     border-radius: 10px;
@@ -75,4 +92,14 @@
     max-height: 20rem;
     object-fit: cover;
     border-radius: 0.5rem;
+}
+
+
+.profileImage>img{
+    width: 100%;
+    max-height: 6rem;
+    max-width: 6rem;
+    object-fit: cover;
+    border-radius: 3rem;
+
 }

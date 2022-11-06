@@ -7,10 +7,12 @@ import {
   unVerifyUser,
   verifyUser,
 } from "../../actions/userAction";
-import verified from "../../img/Verified.png";
+import VerifiedIcon from '@mui/icons-material/Verified';
+import { pink } from '@mui/material/colors';
 
-function TableList({ person }) {
-  const page = "";
+function TableList({ person,page }) {
+
+  
 
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.authReducer.authData);
@@ -46,13 +48,9 @@ function TableList({ person }) {
           />
           <div className="name">
             <span>
-              {person.firstname}
+              {person.firstName} {person.lastName}
               {verify ? (
-                <img
-                  style={{ width: "5%", marginLeft: "2%" }}
-                  src={verified}
-                  alt=""
-                />
+                <VerifiedIcon sx={{ color: pink[500] }}/>
               ) : (
                 ""
               )}

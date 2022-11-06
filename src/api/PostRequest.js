@@ -20,3 +20,5 @@ export const reportPost = (id, userId) => API.put(`/post/${id}/report`, { userId
 export const savePost = (id, userId) => API.put(`/post/${id}/save`, { userId: userId })
 export const deletePost = (id, userId) => { API.delete(`/post/${id}/delete`, { userId: userId }) }
 export const getlikeList = (Id) => API.get(`/post/${Id}/like/user`)
+export const getStory = (id) => API.get(`/story/${id}/story`)
+export const updatePost = (data) => API.put('/post',data)

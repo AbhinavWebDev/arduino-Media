@@ -3,6 +3,7 @@ import "./Posts.css";
 import { useDispatch, useSelector } from "react-redux";
 import Post from "../Post/Post";
 import { getTimelinePosts } from "../../actions/postActions";
+import Spinner from '../Spinner'
 
 function Posts() {
   const dispatch = useDispatch();
@@ -14,10 +15,10 @@ function Posts() {
 
   return (
     <div className="Postcard">
-      {loading
-        ? "Fetching Post..."
-        : posts.map((post) => {
-            return <Post data={post} id={post._id} />;
+      {loading&&<Spinner/>}
+      {posts.length>0&&
+        posts.map((post) => {
+            return <Post data={post} key={post._id} />;
           })}
     </div>
   );

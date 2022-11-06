@@ -17,6 +17,7 @@ function PostShare() {
   const dispatch = useDispatch();
 
   const desc = useRef();
+  const location = useRef();
 
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
   const onImageChange = (event) => {
@@ -28,12 +29,16 @@ function PostShare() {
   const reset = () => {
     setImage(null);
     desc.current.value = "";
+    location.current.value = "";
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     const newPost = {
       userId: user._id,
+      firstName: user.firstName,
+      profilePicture: user.profilePicture,
       desc: desc.current.value,
+      location: location.current.value,
     };
     if (image) {
       const data = new FormData();
@@ -54,18 +59,23 @@ function PostShare() {
     reset();
   };
   return (
-    <div className="PostShare">
-      <img
+    <div className="PostUpdate">
+      {/* <img
         src={
           user.profilePicture
             ? serverPublic + user.profilePicture
             : serverPublic + "defaultProfile.png"
         }
         alt=""
-      />
+      /> */}
       <div>
+        
         <input ref={desc} required type="text" placeholder="Whats happening" />
-        <div className="PostOption">
+       
+        <input ref={location} required type="text" placeholder="Location" />
+        
+        
+    
           <div
             className="Option"
             style={{ color: "var(--photo)" }}
@@ -74,18 +84,7 @@ function PostShare() {
             <UilScenery />
             Photo
           </div>
-          <div className="Option" style={{ color: "var(--video)" }}>
-            <UilPlayCircle />
-            Video
-          </div>
-          <div className="Option" style={{ color: "var(--location)" }}>
-            <UilLocationPoint />
-            Location
-          </div>
-          <div className="Option" style={{ color: "var(--shedule)" }}>
-            <UilSchedule />
-            Shedule
-          </div>
+          
 
           <div style={{ display: "none" }}>
             <input
@@ -101,6 +100,7 @@ function PostShare() {
           <div className="previewImage">
             <UilTimes onClick={() => setImage(null)} />
             <img src={URL.createObjectURL(image)} />
+            
             <button
               className="button ps-button"
               onClick={handleSubmit}
@@ -109,9 +109,11 @@ function PostShare() {
               {loading ? "Uploading..." : "Share"}
             </button>
           </div>
+          
         )}
+        
       </div>
-    </div>
+    
   );
 }
 

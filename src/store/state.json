@@ -1,8 +1,10 @@
 {
   "posts": [],
+  "story": [],
   "likelist":[],
   "uploading": false,
   "authData": null,
   "loading": false,
-  "error": false
+  "error": false,
+  "isAdmin":false
 }

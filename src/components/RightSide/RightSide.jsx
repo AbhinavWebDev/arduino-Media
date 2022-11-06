@@ -9,7 +9,6 @@ import ShareModal from "../ShareModal/ShareModal";
 import FollowersCard from "../FollowersCard/FollowersCard";
 import { Link } from "react-router-dom";
 function RightSide() {
-  const [modalOpened, setModalOpened] = useState(false);
   return (
     <div className="RightSide">
       

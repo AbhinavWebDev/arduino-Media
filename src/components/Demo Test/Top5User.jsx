@@ -28,6 +28,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function Top5User() {
     const { posts, loading } = useSelector((state) => state.postReducer);
     const [user, setUser] = useState([]);
+   
     useEffect(() => {
       const fetchUsers = async () => {
         const { data } = await getTopUser();
@@ -40,14 +41,14 @@ export default function Top5User() {
 
 <Box sx={{ width: '100%' }}>
       <Stack spacing={2} style={{padding:'3%'}}>
-        <Item><h1> Top 5 User</h1>
+        <Item><h1> Top 4 User</h1>
     
     <div style={{display:'flex', gap:'2rem', padding:'20px' ,overflow:'scroll'}}>
     
           {
-             user.map((user) => {
+             user.slice(0, 4).map((user) => {
                 
-                  return <Card data={user} id={user._id} />
+                  return <Card Top5User={user} id={user._id} page='Top5User' />
                 
               })}
     

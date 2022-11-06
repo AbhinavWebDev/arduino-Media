@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { getAllUser } from "../../api/UserRequest";
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
+import BottomAppBar from "../Navbar/Navbar";
 
 const FollowersCard = () => {
   const [persons, setPersons] = useState([]);
@@ -17,6 +18,7 @@ const FollowersCard = () => {
     fetchPersons();
   }, []);
   return (
+    <>
     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       <ListItem style={{padding:'10px', justifyContent: 'center'}} >
     <div className="FollowersCard">
@@ -30,6 +32,8 @@ const FollowersCard = () => {
     </div>
     </ListItem>
     </List>
+    <BottomAppBar/>
+    </>
   );
 };
 

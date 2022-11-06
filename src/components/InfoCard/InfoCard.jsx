@@ -95,52 +95,52 @@
 //   );
 // };
 
-
-import * as React from 'react';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
-import ImageIcon from '@mui/icons-material/Image';
-import WorkIcon from '@mui/icons-material/Work';
-import BeachAccessIcon from '@mui/icons-material/BeachAccess';
-import { useState } from 'react';
+import * as React from "react";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import Avatar from "@mui/material/Avatar";
+import ImageIcon from "@mui/icons-material/Image";
+import WorkIcon from "@mui/icons-material/Work";
+import BeachAccessIcon from "@mui/icons-material/BeachAccess";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as userApi from "../../api/UserRequest";
 import { logOut } from "../../actions/AuthAction";
 import { deleteUser } from "../../actions/userAction";
 import { useParams } from "react-router-dom";
-import LanguageIcon from '@mui/icons-material/Language';
-import PinDropIcon from '@mui/icons-material/PinDrop';
-import { Button } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
-import SendIcon from '@mui/icons-material/Send';
-import Stack from '@mui/material/Stack';
-import LogoutIcon from '@mui/icons-material/Logout';
-import EditIcon from '@mui/icons-material/Edit';
+import LanguageIcon from "@mui/icons-material/Language";
+import PinDropIcon from "@mui/icons-material/PinDrop";
+import { Button } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import SendIcon from "@mui/icons-material/Send";
+import Stack from "@mui/material/Stack";
+import LogoutIcon from "@mui/icons-material/Logout";
+import EditIcon from "@mui/icons-material/Edit";
 
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import ProfileUpdate from "../ProfileCard/ProfileUpdate";
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '95%',
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "95%",
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
-  maxWidth:500
+  maxWidth: 500,
 };
 
-
-export  function InfoCard() {
+export function InfoCard() {
   const [profileUser, setProfileUser] = useState({});
   const { user } = useSelector((state) => state.authReducer.authData);
+  const { deleteuser } = useSelector((state) => state.authReducer);
   const params = useParams();
   const dispatch = useDispatch();
   const profileUserId = params.id;
@@ -160,122 +160,164 @@ export  function InfoCard() {
     dispatch(logOut());
   };
 
-  // const handleDelete = () => {
-  //   dispatch(deleteUser(user._id));
-  // };
+  const handleDelete = () => {
+    dispatch(deleteUser(user._id));
+  };
+  // if(deleteuser){dispatch(logOut())}
+
   const [open, setOpen] = React.useState(false);
   const [openLogout, setOpenLogout] = React.useState(false);
+  const [openEdit, setOpenEdit] = React.useState(false);
   const handleOpenLogout = () => setOpenLogout(true);
   const handleCloseLogout = () => setOpenLogout(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const handleOpenOpenEdit = () => setOpenEdit(true);
+  const handleCloseEdit = () => setOpenEdit(false);
   return (
     <>
+      <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+        <ListItem style={{ padding: "10px", justifyContent: "center" }}>
+          <h4>Profile Info</h4>
+        </ListItem>
+        <ListItem>
+          <ListItemAvatar>
+            <Avatar>
+              <PinDropIcon />
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText primary="Lives In" secondary={profileUser.livesin} />
+        </ListItem>
+        <ListItem>
+          <ListItemAvatar>
+            <Avatar>
+              <WorkIcon />
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText primary="Work" secondary={profileUser.worksAt} />
+        </ListItem>
+        <ListItem>
+          <ListItemAvatar>
+            <Avatar>
+              <LanguageIcon />
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText primary="Country" secondary={profileUser.Country} />
+        </ListItem>
+        <Stack padding={3}>
+          <Button  onClick={handleOpenOpenEdit} variant="outlined" startIcon={<EditIcon />}>
+            Edit Account
+          </Button>
+        </Stack>
+        <Stack direction="row" padding={2} spacing={5}>
+          <Button
+            onClick={handleOpen}
+            variant="outlined"
+            color="error"
+            startIcon={<DeleteIcon />}
+          >
+            Delete
+          </Button>
+          <Button
+            onClick={handleOpenLogout}
+            variant="outlined"
+            endIcon={<LogoutIcon />}
+          >
+            Logout
+          </Button>
+        </Stack>
+      </List>
 
-<List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-<ListItem style={{padding:'10px', justifyContent: 'center'}} >
-        
-      <h4 >Profile Info</h4>
-      </ListItem>
-      <ListItem>
-        <ListItemAvatar>
-          <Avatar>
-            <PinDropIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="Lives In" secondary={profileUser.livesin} />
-      </ListItem>
-      <ListItem>
-        <ListItemAvatar>
-          <Avatar>
-            <WorkIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="Work" secondary={profileUser.worksAt} />
-      </ListItem>
-      <ListItem>
-        <ListItemAvatar>
-          <Avatar>
-            <LanguageIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="Country" secondary={profileUser.Country} />
-      </ListItem>
-      <Stack   padding={3}>
-      <Button variant="outlined"  startIcon={<EditIcon />}>
-        Edit Account
-      </Button>
-     
-    </Stack>
-      <Stack direction="row" padding={2} spacing={5}>
-      <Button onClick={handleOpen} variant="outlined" color="error" startIcon={<DeleteIcon />}>
-        Delete
-      </Button>
-      <Button  onClick={handleOpenLogout} variant="outlined" endIcon={<LogoutIcon />}>
-        Logout
-      </Button>
-    </Stack>
-    </List>
+      <div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h5" component="h2">
+              Danger Zone
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              If you Delete your account you will no longer be able to sign in,
+              and all of your data will be deleted.Deleting your account is a
+              permanent and non recoverable action.
+            </Typography>
 
-<div>
+            <Stack direction="row" spacing={3} padding={2}>
+              <Button
+                variant="outlined"
+                color="error"
+                startIcon={<DeleteIcon />}
+                onClick={handleDelete}
+              >
+                Delete
+              </Button>
+
+              <Button variant="outlined" onClick={handleClose}>
+                Cancel
+              </Button>
+            </Stack>
+          </Box>
+        </Modal>
+
+        <Modal
+          open={openLogout}
+          onClose={handleCloseLogout}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h5" component="h2">
+              Confirm Logout
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              Are you sure want to Logout.
+            </Typography>
+
+            <Stack direction="row" spacing={3} padding={2}>
+              <Button variant="contained" onClick={handleLogout}>
+                Yes, log out
+              </Button>
+              <Button variant="outlined" onClick={handleCloseLogout}>
+                Cancel
+              </Button>
+            </Stack>
+          </Box>
+        </Modal>
+
+
+         {/* Edit Post Modal */}
       <Modal
-        open={open}
-        onClose={handleClose}
+        open={openEdit}
+        onClose={handleCloseEdit}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h5" component="h2">
-           Danger Zone
+           Update Info
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          If you Delete your account you will no longer be able to sign in, and all of your data will be deleted.Deleting your account is a permanent and non recoverable action.
-          </Typography>
-         
-          <Stack  direction='row' spacing={3}  padding={2}>
-      <Button variant="outlined" color="error"  startIcon={<DeleteIcon />}>
-        Delete
-      </Button>
+          <ProfileUpdate/>
 
-      <Button variant="outlined" onClick={handleClose} >
-       Cancel
-      </Button>
-     
-    </Stack>
+          <Stack direction="row" spacing={3} padding={2}>
+            <Button
+              variant="outlined"
+              color="error"
+              startIcon={<DeleteIcon />}
+              onClick={handleDelete}
+            >
+              Update
+            </Button>
+
+            <Button variant="outlined" onClick={handleCloseEdit}>
+              Cancel
+            </Button>
+          </Stack>
         </Box>
       </Modal>
-
-      <Modal
-        open={openLogout}
-        onClose={handleCloseLogout}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h5" component="h2">
-         Confirm Logout
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-         Are you sure want to Logout.
-          </Typography>
-         
-          <Stack direction='row' spacing={3}  padding={2}>
-      <Button   variant="contained" onClick={handleLogout}>
-        Yes, log out
-      </Button>
-      <Button variant="outlined" onClick={handleCloseLogout} >
-       Cancel
-      </Button>
-     
-    </Stack>
-        </Box>
-      </Modal>
-    </div>
+      </div>
     </>
-    
-    
   );
 }
-
-
-

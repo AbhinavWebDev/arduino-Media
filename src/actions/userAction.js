@@ -1,11 +1,11 @@
 import * as UserApi from "../api/UserRequest"
 
-export const updateUser = (id, formData) => async (dispatch) => {
+export const updateUser = (formData) => async (dispatch) => {
 
     dispatch({ type: "UPDATING_START" })
 
     try {
-        const { data } = await UserApi.updateUser(id, formData);
+        const { data } = await UserApi.updateUser(formData);
         dispatch({ type: "UPDATING_SUCCESS", data: data })
     } catch (error) {
         dispatch({ type: "UPDATING_FAIL" })
@@ -45,7 +45,14 @@ export const unVerifyUser = (id) => async (dispatch) => {
 }
 
 export const deleteUser = (id) => async (dispatch) => {
-    dispatch({ type: "DELETE_USER" })
-    UserApi.deleteUser(id)
 
+    dispatch({ type: "DELETE_USER_START" })
+
+    try {
+        const { data } = await UserApi.deleteUser(id)
+        dispatch({ type: "DELETE_USER_SUCCESS"})
+    } catch (error) {
+        dispatch({ type: "DELETE_USER_FAIL" })
+
+    }
 }

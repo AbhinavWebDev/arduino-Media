@@ -14,6 +14,19 @@ export const getTimelinePosts = (id) => async (dispatch) => {
     }
 }
 
+export const getStory = (id) => async (dispatch) => {
+    dispatch({ type: "STORY_RETREIVING_START" })
+    try {
+        const { data } = await PostApi.getStory(id);
+        dispatch({ type: "STORY_RETREIVING_SUCCESS", data: data })
+
+
+    } catch (error) {
+        dispatch({ type: "STORY_RETREIVING_FAIL" })
+        console.log(error);
+    }
+}
+
 
 
 export const getlikeList = (id) => async (dispatch) => {
@@ -28,3 +41,8 @@ export const getlikeList = (id) => async (dispatch) => {
         console.log(error);
     }
 }
+
+
+
+
+

@@ -8,7 +8,6 @@ export const ProfileLeft = () => {
   return (
     <div className="ProfileSide">
  <InfoCard/>
-      <TrendCard />
     </div>
   );
 };

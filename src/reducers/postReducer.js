@@ -29,6 +29,20 @@ const postReducer = (
         case "RETREIVING_FAIL":
             return { ...state, loading: false, error: true }
 
+
+
+            case "STORY_RETREIVING_START":
+            return { ...state, loading: true, error: false }
+        case "STORY_RETREIVING_SUCCESS":
+          
+            return {
+                ...state, story:action.data,
+                loading: false, error: false
+            }
+
+        case "STORY_RETREIVING_FAIL":
+            return { ...state, loading: false, error: true }
+
             case "RETREIVING_LIKELIST_START":
                 return state 
             case "RETREIVING_LIKELIST_SUCCESS":
@@ -43,7 +57,10 @@ const postReducer = (
             case "RETREIVING_LIKELIST_FAIL":
                 return state 
         default: return state
+
     }
+
+    
 }
 
 export default postReducer

@@ -1,96 +1,76 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
-import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import AddCommentOutlinedIcon from '@mui/icons-material/AddCommentOutlined';
-import ShareIcon from '@mui/icons-material/Share';
-import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import BookmarkIcon from '@mui/icons-material/Bookmark';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import React from "react";
+import "./Top5Post.scss";
+import VerifiedIcon from "@mui/icons-material/Verified";
+import IconButton from "@mui/material/IconButton";
+import { pink } from "@mui/material/colors";
+// import { InfoCard } from "../../InfoCard/InfoCard";
+import { useSelector } from "react-redux";
+import { InfoCard } from "../InfoCard/InfoCard";
+import { Avatar, CardHeader } from "@mui/material";
 
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
-
-export default function ImageSlider(post) {
+function ImageSlider(data) {
+  const { user } = useSelector((state) => state.authReducer.authData);
+  const { posts } = useSelector((state) => state.postReducer);
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardHeader
+    <div className="card-container">
+      <div class="background"></div>
+
+      <div class="outer-div">
+        <div class="inner-div">
+          <div class="front">
+          <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
+          <Avatar  aria-label="recipe">
+           <img style={{width: '2.5rem',height: '2.5rem'}} src={
+          data.data.profilePicture
+            ? serverPublic + data.data.profilePicture
+            : serverPublic + "defaultCover.jpg"
+        } alt="" />
           </Avatar>
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
-      />
-      <CardMedia
-        component="img"
-        height="194"
-        image={
-          post.data.image
-            ? serverPublic +  post.data.image
-            : serverPublic + "defaultCover.jpg"
-        }
-        alt="Paella dish"
-      />
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-        { post.data.desc}
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteBorderOutlinedIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <AddCommentOutlinedIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <BookmarkBorderIcon />
-        </ExpandMore>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
         
-      </Collapse>
-    </Card>
+        title={data.data.firstName}
+        subheader={data.data.location}
+      />
+            <div class="front__bkg-photo">
+              <img
+                style={{ width: "100%" }}
+                src={
+                  data.data.image
+                    ? serverPublic + data.data.image
+                    : serverPublic + "defaultCover.jpg"
+                }
+                alt=""
+              />
+            </div>
+           
+            
+            
+
+            <div className="social-container">
+              <div className="followers">
+                <h1 className="bold-text">{data.data.likes.length}</h1>
+                <h2 className="smaller-text">Likes</h2>
+              </div>
+              <div className="likes">
+                <h1 className="bold-text">6</h1>
+                <h2 className="smaller-text">Comments</h2>
+              </div>
+              <div className="photos">
+                <h1 className="bold-text">
+                {data.data.Save.length}
+                
+                </h1>
+                <h2 className="smaller-text">Save</h2>
+              </div>
+            </div>
+          </div>
+          <div class="back"><InfoCard/></div>
+        </div>
+      </div>
+    </div>
   );
 }
+
+export default ImageSlider;

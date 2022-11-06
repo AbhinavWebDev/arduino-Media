@@ -31,7 +31,7 @@ function User({ person }) {
         />
         <div className="name">
           <span>
-            {person.firstname}{" "}
+            {person.firstName} {person.lastName}{" "}
             {person.verify ? (
               <img style={{ width: "10%" }} src={verified} alt="" />
             ) : (

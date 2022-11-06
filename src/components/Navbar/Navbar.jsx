@@ -1,78 +1,118 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import Paper from '@mui/material/Paper';
-import Fab from '@mui/material/Fab';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemText from '@mui/material/ListItemText';
-import ListSubheader from '@mui/material/ListSubheader';
-import Avatar from '@mui/material/Avatar';
-import MenuIcon from '@mui/icons-material/Menu';
-import AddIcon from '@mui/icons-material/Add';
-import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
-import MoreIcon from '@mui/icons-material/MoreVert';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import ChatBubbleOutlineRoundedIcon from '@mui/icons-material/ChatBubbleOutlineRounded';
-import ProfileLogo from '../../img/Profile.jpg'
-import { Link } from 'react-router-dom';
-import { grey } from '@mui/material/colors';
-import { useSelector } from 'react-redux';
+import * as React from "react";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import Paper from "@mui/material/Paper";
+import Avatar from "@mui/material/Avatar";
+import ProfileLogo from "../../img/Profile.jpg";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Modal from "@mui/material/Modal";
+import PostShare from "../PostShare/PostShare";
+import HomeIcon from "@mui/icons-material/Home";
+import SmsIcon from "@mui/icons-material/Sms";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Stack } from "@mui/material";
+import "./Navbar.css";
 
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "100%",
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+  maxWidth: 500,
+  Width: 375,
+};
 
-
-
-
-const StyledFab = styled(Fab)({
-  position: 'absolute',
-  zIndex: 1,
-  top: -33 ,
-  left: 0,
-  right: 0,
-  margin: '0 auto',
-});
-
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
 export default function BottomAppBar() {
   const { user } = useSelector((state) => state.authReducer.authData);
-
+  const [addPost, setaddPost] = React.useState(null);
+  const handleOpenAdd = () => setaddPost(true);
+  const handleCloseAdd = () => setaddPost(false);
+  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
-    <React.Fragment>
-      <CssBaseline />
-      
-      <AppBar style={{ color: 'white' }} position="fixed"  sx={{ display: { xs: 'flex',sm:'none' },top: 'auto', bottom: 0 }}>
-        <Toolbar>
-       
-          <Link style={{ textDecoration: "none", color: "inherit" }} to="../home"> <HomeOutlinedIcon sx={{ mr: 2,fontSize: 35  }}/> </Link>
-         
+    <div className="Navbar">
+      <Box sx={{ width: "100%" }}>
+        <Stack>
+          <Item>
+            <div
+              style={{ display: "flex", gap: "1.75rem", overflow: "scroll" }}
+            >
+              <IconButton color="inherit">
+                <Link
+                  style={{ textDecoration: "none", color: "black" }}
+                  to="../home"
+                >
+                  <HomeIcon sx={{ fontSize: 33 }} />
+                </Link>
+              </IconButton>
+              <IconButton color="inherit">
+                <Link
+                  style={{ textDecoration: "none", color: "black" }}
+                  to="../chatMobile"
+                >
+                  <SmsIcon sx={{ fontSize: 33 }} />
+                </Link>
+              </IconButton>
 
-        
-          <Link style={{ textDecoration: "none", color: "inherit" }} to="../chat">
-              <ChatBubbleOutlineRoundedIcon sx={{ mr: 2, fontSize: 33}} />
-        </Link>
-       
-          <StyledFab color="secondary" aria-label="add">
-            <AddIcon />
-          </StyledFab>
-          <Box sx={{ flexGrow: 1 }} />
-          <IconButton  color="inherit">
-            <FavoriteBorderRoundedIcon sx={{ fontSize: 33}} />
-          </IconButton>
-          <IconButton color="inherit">
-          <Link
-            style={{ textDecoration: "none", color: "inherit" }}
-            to={`/profile/${user._id}`}
-          >
-           <Avatar alt="Remy Sharp" src={ProfileLogo} />
-          </Link>
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-    </React.Fragment>
+              <AddCircleIcon
+                sx={{ mt: 1, fontSize: 40, color: "black" }}
+                onClick={handleOpenAdd}
+              />
+
+              <IconButton color="inherit">
+                <Link
+                  style={{ textDecoration: "none", color: "black" }}
+                  to="../Suggestion"
+                >
+                  <FavoriteIcon sx={{ fontSize: 33 }} />
+                </Link>
+              </IconButton>
+              <IconButton color="inherit">
+                <Link
+                  style={{ textDecoration: "none", color: "black" }}
+                  to={`/profile/${user._id}`}
+                >
+                  <Avatar
+                    src={
+                      user.profilePicture
+                        ? serverPublic + user.profilePicture
+                        : serverPublic + "defaultProfile.png"
+                    }
+                  />
+                </Link>
+              </IconButton>
+            </div>
+          </Item>
+        </Stack>
+        <Modal
+          open={addPost}
+          onClose={handleCloseAdd}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h5" component="h2">
+              Create Post
+            </Typography>
+            <PostShare />
+          </Box>
+        </Modal>
+      </Box>
+    </div>
   );
 }

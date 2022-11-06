@@ -145,8 +145,6 @@ import AddCommentOutlinedIcon from "@mui/icons-material/AddCommentOutlined";
 import ShareIcon from "@mui/icons-material/Share";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
 import { pink } from '@mui/material/colors';
 import Tooltip from '@mui/material/Tooltip';
 import Snackbar from '@mui/material/Snackbar';
@@ -154,29 +152,9 @@ import CloseIcon from '@mui/icons-material/Close';
 import Button from '@mui/material/Button';
 import React, { useState } from "react";
 import "./Post.css";
-import Comment from "../../img/comment.png";
-import Share from "../../img/share.png";
-import Heart from "../../img/like.png";
-import NotLike from "../../img/notlike.png";
-import Report from "../../img/report.png";
-import unreport from "../../img/unreport.png";
-import Saved from "../../img/saved.png";
-import Save from "../../img/save.png";
-import Delete from "../../img/Delete.png";
 import LikeModal from "../LikeModal/LikeModal";
-import { UilPen } from "@iconscout/react-unicons";
 import { format } from "timeago.js";
-import {  alpha } from '@mui/material/styles';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import EditIcon from '@mui/icons-material/Edit';
-import Divider from '@mui/material/Divider';
-import ArchiveIcon from '@mui/icons-material/Archive';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   deletePost,
   likePost,
@@ -184,15 +162,20 @@ import {
   savePost,
 } from "../../api/PostRequest";
 import Dots from "../Demo Test/Dots";
+import { getTimelinePosts } from "../../actions/postActions";
+import Dialog from '@mui/material/Dialog';
+import ListItemText from '@mui/material/ListItemText';
+import ListItem from '@mui/material/ListItem';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Slide from '@mui/material/Slide';
+import Comments from "../Comments/Comments";
 
-
-
-
-
-
-
-
-
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -216,6 +199,7 @@ export default function Post(data) {
   const [modalOpened, setModalOpened] = useState(false);
   const [open, setOpen] = React.useState(false);
   const [openReport, setOpenReport] = React.useState(false);
+  const dispatch = useDispatch();
 
 
 
@@ -254,6 +238,7 @@ export default function Post(data) {
     setLiked((prev) => !prev);
     likePost(data.data._id, user._id);
     liked ? setLikes((prev) => prev - 1) : setLikes((prev) => prev + 1);
+    // dispatch(getTimelinePosts(user._id));
   };
 
   const handleReport = () => {
@@ -278,12 +263,28 @@ export default function Post(data) {
     setExpanded(!expanded);
   };
 
+
+  const [comments, setComments] = useState(false);
+
+  const handleClickComments = () => {
+    setComments(true);
+  };
+
+  const handleCloseComments = () => {
+    setComments(false);
+  };
+
   return (
+    <>
     <Card sx={{ maxWidth: 900 }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
+           <img style={{width: '2.5rem',height: '2.5rem'}} src={
+          data.data.profilePicture
+            ? serverPublic + data.data.profilePicture
+            : serverPublic + "defaultCover.jpg"
+        } alt="" />
           </Avatar>
         }
         action={
@@ -291,12 +292,12 @@ export default function Post(data) {
              <Dots postdata={data.data}/>
           </IconButton>
         }
-        title="Abhinav A"
-        subheader={format(data.data.createdAt)}
+        title={data.data.firstName}
+        subheader={data.data.location}
       />
       <CardMedia
         component="img"
-        height="508"
+        height="100%"
         image={
           data.data.image
             ? serverPublic + data.data.image
@@ -309,32 +310,27 @@ export default function Post(data) {
       <Tooltip   title={liked ?"Dis-Like" :"Like"}> 
       
         <IconButton aria-label="add to favorites"  onClick={handleLike}>
-        {liked ?   <FavoriteIcon sx={{ color: pink[500] }}/> :<FavoriteBorderOutlinedIcon />}
+        {liked ?   <FavoriteIcon sx={{ color: pink[500] }}/> :<FavoriteBorderOutlinedIcon sx={{ color: pink[500] }} />}
          
         </IconButton>
         </Tooltip>
         <Tooltip title="Comment">
-        <IconButton aria-label="share">
-          <AddCommentOutlinedIcon />
+        <IconButton onClick={handleClickComments} aria-label="share">
+          <AddCommentOutlinedIcon  sx={{ color: '#212121' }}/>
         </IconButton>
         </Tooltip>
         <Tooltip title="Share">
-        <IconButton aria-label="share">
+        <IconButton aria-label="share" sx={{ color: '#212121' }}>
           <ShareIcon />
         </IconButton>
         </Tooltip>
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
+
           <Tooltip title={save ?"Un-Save" :"Save"}>
-         <IconButton aria-label="save"   onClick={handleSave}>
-       {save?<BookmarkIcon/>:<BookmarkBorderIcon />} 
+         <IconButton style={{marginLeft: "auto"}} aria-label="save"   onClick={handleSave}>
+       {save?<BookmarkIcon sx={{ color: '#212121' }}/>:<BookmarkBorderIcon sx={{ color: '#212121' }}/>} 
         </IconButton>
         </Tooltip>
-        </ExpandMore>
+      
       </CardActions>
       <CardContent>
       { likes ? <Typography variant="body2" color="text.secondary"  onClick={() => setModalOpened(true)}>
@@ -364,18 +360,6 @@ export default function Post(data) {
         message={save ? "Post Saved":"Post Un-Saved"}
         action={action}
       />
-      <Snackbar
-        open={openReport}
-        autoHideDuration={6000}
-        onClose={handleCloseReport}
-        message={save ? "Post Reported":"Report Removed"}
-        action={action}
-      />
-
-
-
-
-      
     </div>
 
 
@@ -386,6 +370,36 @@ export default function Post(data) {
       </CardContent>
       <Collapse in={expanded} timeout="auto" unmountOnExit></Collapse>
     </Card>
+
+
+    <div>
+      <Dialog
+        fullScreen
+        open={comments}
+        onClose={handleCloseComments}
+        TransitionComponent={Transition}
+      >
+        <AppBar sx={{ position: 'fixed' }}>
+          <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={handleCloseComments}
+              aria-label="close"
+            >
+              <CloseIcon />
+            </IconButton>
+            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+              Comments
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <List>
+          <Comments PostID={data.data._id} key={data.data._id}/>
+        </List>
+      </Dialog>
+    </div>
+    </>
   );
 }
 

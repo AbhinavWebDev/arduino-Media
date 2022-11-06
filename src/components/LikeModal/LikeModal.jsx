@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 function LikeModal({ modalOpened, setModalOpened, PostID }) {
-  console.log('my id',PostID);
   const theme = useMantineTheme();
   const param = useParams();
   const { user } = useSelector((state) => state.authReducer.authData);

@@ -1,19 +1,14 @@
 import React from "react";
 import "./Chatlist.css";
-import LogoSearch from "../../components/LogoSearch/LogoSearch";
 import { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { userChats } from "../../api/ChatRequest";
 import Conversation from "../../components/Conversation/Conversation";
-import { UilSetting } from "@iconscout/react-unicons";
-import { Link } from "react-router-dom";
-import Home from "../../img/home.png";
-import Noti from "../../img/noti.png";
-import Comment from "../../img/comment.png";
 import ChatBox from "../../components/ChatBox/ChatBox";
 import { io } from "socket.io-client";
 import Contact from "../FollowersCard/FollowersCard";
-import About from '../../pages/Chat/Chat'
+import { List, ListItem } from "@mui/material";
+import CreateChat from "../ChatBox/CreateChat";
 const Chatlist = () => {
 
 
@@ -73,6 +68,8 @@ const Chatlist = () => {
 
   return (
     <>
+    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+      <ListItem style={{ justifyContent: 'center'}} >
     <div className="container">
             {page === "about" && <div>
 
@@ -86,17 +83,14 @@ const Chatlist = () => {
        
       {" "}
     
-      <div className="Chatlist">
-        {/* {Left Side} */}
-        <div className="Left-side-chat">
-          {/* <LogoSearch/> */}
-          <div className="Chat-container">
+      
 
          
              
         
 
             <div className="Chat-list">
+             <CreateChat/>
               {chats.map((chat) => (
                 <div onClick={() => {setPage("contact") ; setCurrentChat(chat)}}>
                      {/* <Link style={{ textDecoration: "none", color: "inherit" }} to="../chat"> */}
@@ -111,10 +105,7 @@ const Chatlist = () => {
             </div>
           </div>
         </div>
-      </div>
-      </div>
-
-            </div> }
+       }
             {page === "contact" && <ChatBox
             chat={currentChat}
             currentUser={user._id}
@@ -123,11 +114,18 @@ const Chatlist = () => {
           />}
        
      </div>
+     </ListItem>
+    </List>
     </>
   );
 };
 
 export default Chatlist;
+
+
+
+    
+    
 
 
 
