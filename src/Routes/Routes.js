@@ -1,18 +1,18 @@
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { useSelector } from "react-redux";
-import Login from '../pages/Auth/LoginPage';
-import Signup from '../pages/Auth/SignupPage';
-import Chat from '../pages/Chat/Chat';
-import Chatlist from '../components/Demo Test/Chatlist';
-import UserManagement from '../pages/userManagement/userManagement';
-import Verification from '../pages/Verification Request/verificationRequest';
-import Comments from '../components/Comments/Comments';
-import OTP from '../components/Demo Test/Otp';
-import { UserDirection } from '../pages/UserDirection';
-import PostManagement from '../pages/postManagement/postManagement'
-import Profile from '../pages/Profile/Profile'
-import FollowersCard from '../components/FollowersCard/FollowersCard';
+import Login from '../Pages/Auth/LoginPage';
+import Signup from '../Pages/Auth/SignupPage';
+import Chat from '../Pages/Chat/Chat';
+import Chatlist from '../Components/ChatList/Chatlist';
+import UserManagement from '../Pages/UserManagement/userManagement';
+import Verification from '../Pages/Verification Request/verificationRequest';
+import Comments from '../Components/Comments/Comments';
+import OTP from '../Components/OtpInput/Otp';
+import { UserDirection } from '../Pages/UserDirection';
+import PostManagement from '../Pages/PostManagement/postManagement'
+import Profile from '../Pages/Profile/Profile'
+import FollowersCard from '../Components/FollowersCard/FollowersCard';
 
 export const RouteManagement = () => {
     const user = useSelector((state) => state.authReducer.authData)
@@ -22,9 +22,9 @@ export const RouteManagement = () => {
                 <Route path="/admin" element={user ? <UserDirection /> : <Login />} />
                 <Route path="/" element={user ? <UserDirection /> : <Login />} />
                 <Route path="/home" element={user ? <UserDirection /> : <Login />} />
-                <Route path="/auth" element={user ? <Navigate to='../home' /> : <Login />} />
-                <Route path="/signup" element={user ? <Navigate to='../home' /> : <Signup />} />
-                <Route path="/otp" element={user ? <Navigate to='../home' /> : <OTP />} />
+                <Route path="/auth" element={user ? <Navigate to='../Home' /> : <Login />} />
+                <Route path="/signup" element={user ? <Navigate to='../Home' /> : <Signup />} />
+                <Route path="/otp" element={user ? <Navigate to='../Home' /> : <OTP />} />
                 <Route path='/profile/:id' element={user ? <Profile /> : <Login />} />
                 <Route path="/chat" element={user ? <Chat /> : <Login />} />
                 <Route path="/chatMobile" element={user ? <Chatlist /> : <Login />} />
