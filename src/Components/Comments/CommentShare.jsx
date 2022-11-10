@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createComment} from "../../Redux/Actions/CommentActions";
 import SendIcon from '@mui/icons-material/Send';
 import { Avatar } from "@mui/material";
+import defaultProfile from '../../Images/Default_DP.jpg'
 
 
 
@@ -38,9 +39,9 @@ function CommentShare({PostID,fetchComment}) {
         src={
           user.profilePicture
             ? serverPublic + user.profilePicture
-            : serverPublic + "defaultProfile.png"
+            : defaultProfile
         }
-        alt=""
+       
       />
       <div >
       

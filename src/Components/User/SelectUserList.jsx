@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createChat } from "../../Redux/Actions/ChatAction";
 import { followUser, unFollowUser } from "../../Redux/Actions/UserAction";
-import verified from "../../Images/Verified.png";
+import defaultProfile from "../../Images/Default_DP.jpg";
+
 
 function SelectUSerList({ person }) {
   const dispatch = useDispatch();
@@ -17,7 +18,6 @@ function SelectUSerList({ person }) {
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
   const handleCreateChat = () => {
     dispatch(createChat(newChat));
-    console.log("here ok");
 
     // setFollowing((prev) => !prev);
   };
@@ -28,7 +28,7 @@ function SelectUSerList({ person }) {
           src={
             person.profilePicture
               ? serverPublic + person.profilePicture
-              : serverPublic + "defaultProfile.png"
+              : defaultProfile
           }
           alt=""
           className="followerImage"
@@ -37,7 +37,7 @@ function SelectUSerList({ person }) {
           <span>
             {person.firstName} {person.lastName}{" "}
             {person.verify ? (
-              <img style={{ width: "10%" }} src={verified} alt="" />
+            ''
             ) : (
               ""
             )}

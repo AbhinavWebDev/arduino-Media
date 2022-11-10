@@ -299,22 +299,9 @@ export function InfoCard() {
           <Typography id="modal-modal-title" variant="h5" component="h2">
            Update Info
           </Typography>
-          <ProfileUpdate/>
+          <ProfileUpdate handleCloseEdit={handleCloseEdit}/>
 
-          <Stack direction="row" spacing={3} padding={2}>
-            <Button
-              variant="outlined"
-              color="error"
-              startIcon={<DeleteIcon />}
-              onClick={handleDelete}
-            >
-              Update
-            </Button>
-
-            <Button variant="outlined" onClick={handleCloseEdit}>
-              Cancel
-            </Button>
-          </Stack>
+          
         </Box>
       </Modal>
       </div>

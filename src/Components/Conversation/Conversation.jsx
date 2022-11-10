@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { getUser } from "../../Api/UserRequest";
+import defaultProfile from '../../Images/Default_DP.jpg'
 
 
 const Conversation = ({ data, currentUser, online }) => {
@@ -26,7 +27,7 @@ const Conversation = ({ data, currentUser, online }) => {
             src={
               userData?.profilePicture
                 ? process.env.REACT_APP_PUBLIC_FOLDER + userData.profilePicture
-                : process.env.REACT_APP_PUBLIC_FOLDER + "defaultProfile.png"
+                : defaultProfile
             }
             alt=""
             className="followerImage"
@@ -34,6 +35,7 @@ const Conversation = ({ data, currentUser, online }) => {
           />
           <div className="name" style={{ fontSize: "0.8rem" }}>
             <span>
+              {console.log('userdata',data)}
               {userData?.firstName} {userData?.lastLame}
             </span>
             <span>{online ? "Online" : "Offline"}</span>

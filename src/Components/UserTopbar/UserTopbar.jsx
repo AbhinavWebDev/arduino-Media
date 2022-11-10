@@ -17,6 +17,7 @@ import Modal from "@mui/material/Modal";
 import PostShare from "../PostShare/PostShare";
 import Logo from "../../Images/Logo_ae.svg";
 import { Gradient } from "@mui/icons-material";
+import defaultProfile from "../../Images/Default_DP.jpg";
 
 const style = {
   position: "absolute",
@@ -140,7 +141,7 @@ export default function LogoSearch() {
                   src={
                     user.profilePicture
                       ? serverPublic + user.profilePicture
-                      : serverPublic + "defaultProfile.jpg"
+                      : defaultProfile
                   }
                 />
               </Link>

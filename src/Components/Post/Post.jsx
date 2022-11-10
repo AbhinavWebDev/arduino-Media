@@ -44,6 +44,8 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Slide from '@mui/material/Slide';
 import Comments from "../Comments/Comments";
+import defaultProfile from "../../Images/Default_DP.jpg";
+import defaultCover from "../../Images/Default_Cover.jpg";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -155,7 +157,7 @@ export default function Post(data) {
            <img style={{width: '2.5rem',height: '2.5rem'}} src={
           data.data.profilePicture
             ? serverPublic + data.data.profilePicture
-            : serverPublic + "defaultCover.jpg"
+            : defaultProfile
         } alt="" />
           </Avatar>
         }
@@ -173,9 +175,8 @@ export default function Post(data) {
         image={
           data.data.image
             ? serverPublic + data.data.image
-            : serverPublic + "defaultCover.jpg"
+            : defaultCover
         }
-        alt="Paella dish"
       />
 
       <CardActions disableSpacing>

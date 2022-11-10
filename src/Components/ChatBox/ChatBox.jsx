@@ -10,6 +10,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import SendIcon from '@mui/icons-material/Send';
 import Avatar from '@mui/material/Avatar';
 import { pink } from '@mui/material/colors';
+import defaultProfile from '../../Images/Default_DP.jpg'
 
 const ChatBox = ({ chat, currentUser, setSendMessage, recieveMessage }) => {
   const [userData, setUserData] = useState(null);
@@ -94,8 +95,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage, recieveMessage }) => {
                       userData?.profilePicture
                         ? process.env.REACT_APP_PUBLIC_FOLDER +
                           userData.profilePicture
-                        : process.env.REACT_APP_PUBLIC_FOLDER +
-                          "defaultProfile.png"
+                        : defaultProfile
                     }
                     alt=""
                     className="followerImage"

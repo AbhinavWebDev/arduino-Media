@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { followUser, unFollowUser } from "../../Redux/Actions/UserAction";
-import verified from "../../Images/Verified.png";
+import defaultProfile from "../../Images/Default_DP.jpg";
 
 function User({ person }) {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ function User({ person }) {
           src={
             person.profilePicture
               ? serverPublic + person.profilePicture
-              : serverPublic + "defaultProfile.png"
+              : defaultProfile
           }
           alt=""
           className="followerImage"
@@ -33,7 +33,8 @@ function User({ person }) {
           <span>
             {person.firstName} {person.lastName}{" "}
             {person.verify ? (
-              <img style={{ width: "10%" }} src={verified} alt="" />
+              // <img style={{ width: "10%" }} src={verified} alt="" /> 
+              ''
             ) : (
               ""
             )}

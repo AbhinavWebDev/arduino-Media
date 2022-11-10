@@ -5,7 +5,6 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import Paper from "@mui/material/Paper";
 import Avatar from "@mui/material/Avatar";
-import ProfileLogo from "../../Images/Profile.jpg";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Modal from "@mui/material/Modal";
@@ -16,6 +15,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Stack } from "@mui/material";
 import "./BottomAppBar.css";
+import defaultProfile from '../../Images/Default_DP.jpg'
 
 const style = {
   position: "absolute",
@@ -91,7 +91,7 @@ export default function BottomAppBar() {
                     src={
                       user.profilePicture
                         ? serverPublic + user.profilePicture
-                        : serverPublic + "defaultProfile.png"
+                        : defaultProfile
                     }
                   />
                 </Link>

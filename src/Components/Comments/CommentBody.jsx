@@ -2,6 +2,7 @@ import React from 'react'
 import { Divider, Avatar, Grid, Paper } from "@material-ui/core";
 import { AvatarGroup } from '@mui/material';
 import { format } from "timeago.js";
+import defaultProfile from '../../Images/Default_DP.jpg'
 
 
 export const CommentBody = (data) => {
@@ -15,7 +16,7 @@ export const CommentBody = (data) => {
            <img style={{width: '2.5rem',height: '2.5rem'}} src={
           data.data.profilePicture
             ? serverPublic + data.data.profilePicture
-            : serverPublic + "defaultCover.jpg"
+            : defaultProfile
         } alt="" />
           </Avatar>
       </Grid>

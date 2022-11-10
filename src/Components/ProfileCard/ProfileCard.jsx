@@ -7,7 +7,8 @@ import { InfoCard } from "../InfoCard/InfoCard";
 import { useSelector } from "react-redux";
 import FollowersListModal from "../Modals/followersListModal";
 import FollowingList from "../Modals/followingListModal";
-
+import defaultProfile from "../../Images/Default_DP.jpg";
+import DefaultCover from "../../Images/Default_Cover.jpg";
 function Card({Top5User,page}) {
   const { user } = useSelector((state) => state.authReducer.authData);
   const { posts } = useSelector((state) => state.postReducer);
@@ -30,7 +31,7 @@ function Card({Top5User,page}) {
                 src={
                   cureentuser.coverPicture
                     ? serverPublic + cureentuser.coverPicture
-                    : serverPublic + "defaultCover.jpg"
+                    : DefaultCover
                 }
                 alt=""
               />
@@ -43,7 +44,7 @@ function Card({Top5User,page}) {
                 src={
                   cureentuser.profilePicture
                     ? serverPublic + cureentuser.profilePicture
-                    : serverPublic + "defaultProfile.png"
+                    : defaultProfile
                 }
                 alt=""
               />

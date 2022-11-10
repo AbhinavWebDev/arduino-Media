@@ -19,7 +19,7 @@ const FollowersCard = () => {
   }, []);
   return (
     <>
-    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+    <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
       <ListItem style={{padding:'10px', justifyContent: 'center'}} >
     <div className="FollowersCard">
       <h3>People You may know</h3>
