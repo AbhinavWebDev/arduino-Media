@@ -1,8 +1,7 @@
 .ChatBox-container {
     background:white;
-    border-radius: 1rem;
     display: grid;
-    grid-template-rows: 9vh 68vh 8vh;
+    grid-template-rows: 9vh 72vh 8vh;
    
 }
 

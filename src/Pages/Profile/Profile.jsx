@@ -12,9 +12,7 @@ const Profile = () => {
   const { user } = useSelector((state) => state.authReducer.authData);
   return (
     <> 
-    <div style={{position: 'fixed',bottom: '0',zIndex: '5' }}>
-    <BottomAppbar />
-    </div>
+    
     
      <TopNavbar />
     <div className='Profile'>
@@ -25,6 +23,9 @@ const Profile = () => {
         <SavePostTab/>
      </div> 
      <RightSide/>
+    </div>
+    <div style={{position: 'fixed',bottom: '0',zIndex: '5' }}>
+    <BottomAppbar />
     </div>
     </>
   )

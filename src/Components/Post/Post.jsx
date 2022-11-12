@@ -79,13 +79,7 @@ export default function Post(data) {
 
 
 
-  const handleCloseReport = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
 
-    setOpenReport(false);
-  };
 
 
   const handleClose = (event, reason) => {
@@ -115,11 +109,7 @@ export default function Post(data) {
     // dispatch(getTimelinePosts(user._id));
   };
 
-  const handleReport = () => {
-    setOpenReport(true);
-    setReport((prev) => !prev);
-    reportPost(data._id, user._id);
-  };
+
 
   const handleSave = () => {
     setOpen(true);
@@ -127,15 +117,11 @@ export default function Post(data) {
     savePost(data.data._id, user._id);
   };
 
-  const handleDelete = () => {
-    deletePost(data._id, user._id);
-  };
+ 
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
   const [expanded, setExpanded] = React.useState(false);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+ 
 
 
   const [comments, setComments] = useState(false);

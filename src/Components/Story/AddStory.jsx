@@ -8,7 +8,7 @@ import Badge from "@mui/material/Badge";
 import Avatar from "@mui/material/Avatar";
 import add from "../../Images/add.webp";
 import { styled } from "@mui/material/styles";
-
+import defaultProfile from '../../Images/Default_DP.jpg'
 const SmallAvatar = styled(Avatar)(({ theme }) => ({
   width: 22,
   height: 22,
@@ -71,7 +71,7 @@ function AddStory() {
             src={
               user.profilePicture
                 ? serverPublic + user.profilePicture
-                : serverPublic + "defaultProfile.png"
+                :  defaultProfile
             }
           />
           

@@ -73,6 +73,7 @@ const Chat = () => {
             {chats.map((chat) => (
               <div onClick={() => setCurrentChat(chat)}>
                 <Conversation data={chat} currentUser={user._id} online={checkOnlineStatus(chat)}/>
+                
               </div>
             ))}
           </div>
@@ -82,7 +83,7 @@ const Chat = () => {
       {/* {Right Side} */}
 
       <div className="Right-side-chat">
-        <div style={{ width: "20rem", alignSelf: "flex-end" }}>
+        <div style={{ width: "108%", alignSelf: "flex-end" }}>
           
           {/* chat Body */}
           <ChatBox

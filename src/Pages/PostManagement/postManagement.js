@@ -6,9 +6,6 @@ function postManagement() {
   return (
     <div>
       <AdminNavbar/>
-    
-      {/* <AdminPosts /> */}
-
       <ReportedPost/>
 
     </div>

@@ -34,9 +34,10 @@ const Conversation = ({ data, currentUser, online }) => {
             style={{ width: "50px", height: "50px" }}
           />
           <div className="name" style={{ fontSize: "0.8rem" }}>
-            <span>
-              {console.log('userdata',data)}
+            <span style={{color:'black'}}>
+            
               {userData?.firstName} {userData?.lastLame}
+              hai
             </span>
             <span>{online ? "Online" : "Offline"}</span>
           </div>

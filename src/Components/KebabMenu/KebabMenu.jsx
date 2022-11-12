@@ -83,11 +83,10 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function Dots(postdata) {
+export default function Dots({postdata}) {
   const { user } = useSelector((state) => state.authReducer.authData);
   const dispatch = useDispatch();
-  const [report, setReport] = useState(postdata.postdata.report.includes(user._id));
-  // const [openReport, setOpenReport] = React.useState(false);
+  const [report, setReport] = useState(postdata.report.includes(user._id));
   const [openDelete, setOpenDelete] = React.useState(false);
   const [openEdit, setOpenEdit] = React.useState(false);
   const [openReport, setOpenReport] = React.useState(false);
@@ -100,25 +99,15 @@ export default function Dots(postdata) {
     setAnchorEl(null);
   };
 
-  // const handleReport = () => {
-  //   setReport((prev) => !prev);
-  //   reportPost(postdata.postdata._id, user._id);
-  //   setAnchorEl(null);
-  //   setOpenReport(true);
-  // };
-
-  // const handleCloseReport = (event, reason) => {
-  //   setOpenReport(false);
-  // };
   const handleOpen = () => setOpenDelete(true);
   const handleCloseDelete = () => setOpenDelete(false);
   const handleEditOpen = () => setOpenEdit(true);
   const handleCloseEdit = () => setOpenEdit(false);
   const handleReportOpen = () => setOpenReport(true);
-  const handleCloseReport = () => setOpenReport(false);
+  const handleCloseReport = () => {setOpenReport(false)};
 
   const handleDelete = () => {
-    deletePost(postdata.postdata._id, user._id);
+    deletePost(postdata._id, user._id);
     dispatch(getTimelinePosts(user._id));
   };
 
@@ -159,13 +148,13 @@ export default function Dots(postdata) {
         open={open}
         onClose={handleClose}
       >
-        {postdata.postdata.userId === user._id ? 
+        {postdata.userId === user._id ? 
         <MenuItem onClick={handleEditOpen} disableRipple>
           <EditIcon />
           Edit
         </MenuItem>
         :''}
-        {postdata.postdata.userId === user._id || user.isAdmin ? (
+        {postdata.userId === user._id || user.isAdmin ? (
           <MenuItem onClick={handleOpen} disableRipple>
             <DeleteIcon sx={{ color: pink[500] }} />
             Delete
@@ -248,7 +237,7 @@ export default function Dots(postdata) {
           <Typography id="modal-modal-title" variant="h5" component="h2">
            Update Post
           </Typography>
-          <PostEdit Post={postdata.postdata} setOpenEdit={setOpenEdit}/>
+          <PostEdit Post={postdata} setOpenEdit={setOpenEdit}/>
 
           
         </Box>
@@ -265,7 +254,7 @@ export default function Dots(postdata) {
           
          
 
-          <ReportPost Post={postdata.postdata} handleCloseReport={handleCloseReport}/>
+          <ReportPost Post={postdata} handleCloseReport={handleCloseReport}/>
 
           
         </Box>

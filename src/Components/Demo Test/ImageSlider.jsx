@@ -7,6 +7,7 @@ import { pink } from "@mui/material/colors";
 import { useSelector } from "react-redux";
 import { InfoCard } from "../InfoCard/InfoCard";
 import { Avatar, CardHeader } from "@mui/material";
+import defaultProfile from '../../Images/Default_DP.jpg'
 
 function ImageSlider(data) {
   const { user } = useSelector((state) => state.authReducer.authData);
@@ -25,7 +26,7 @@ function ImageSlider(data) {
            <img style={{width: '2.5rem',height: '2.5rem'}} src={
           data.data.profilePicture
             ? serverPublic + data.data.profilePicture
-            : serverPublic + "defaultCover.jpg"
+            : defaultProfile
         } alt="" />
           </Avatar>
         }

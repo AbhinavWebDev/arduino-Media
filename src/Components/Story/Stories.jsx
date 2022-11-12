@@ -9,6 +9,7 @@ import Stack from "@mui/material/Stack";
 import { Button } from "@mui/material";
 import Story from "./Story";
 import CloseIcon from "@mui/icons-material/Close";
+import defaultProfile from '../../Images/Default_DP.jpg'
 
 const style = {
     position: "absolute",
@@ -32,12 +33,22 @@ export const Stories = (data) => {
 console.log('ur story',data);
   return (
     <div>
-        <Avatar
+      <Avatar
+          
+          style={{width:'60px', height:'60px'}}
+          onClick={handleOpenLogout}
+          src={
+            data.data.profilePicture
+              ? serverPublic + data.data.profilePicture
+              :  defaultProfile
+          }
+        />
+        {/* <Avatar
         style={{width:'60px', height:'auto' ,border: "3px solid green" }}
     onClick={handleOpenLogout}
     alt="defaultCover.jpg"
     src={serverPublic + data.data.profilePicture}
-  />
+  /> */}
 <Typography sx={{ fontSize:12, textAlign:'center' }} variant="h6" component="div">
 {data.data.firstName}
             </Typography>

@@ -2,7 +2,7 @@ import ReactInstaStories from "react-insta-stories";
 import React from 'react';
 import { useSelector } from "react-redux";
 import { format } from "timeago.js";
-
+import defaultProfile from '../../Images/Default_DP.jpg'
 
 function SeeMore() {
   return <div>see more</div>;
@@ -17,7 +17,7 @@ function SeeMore() {
       header: {
         heading: data.data.firstName,
         subheading:  format(data.data.createdAt),
-        profileImage: serverPublic+data.data.profilePicture
+        profileImage: data.data.profilePicture? serverPublic+data.data.profilePicture:defaultProfile
       }
     },
     

@@ -1,10 +1,38 @@
 
 
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
+.bottomNavbar {
+  overflow: hidden;
+
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+
+
+.bottomNavbar .IconButton:hover {
+  background: #f1f1f1;
+  color: black;
+}
+
+.bottomNavbar Link.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.main {
+  padding: 16px;
+  margin-bottom: 30px;
+}
   @media only screen and (min-width: 600px) and (max-width: 992px)
   {
     
-    .Navbar{
+    .bottomNavbar{
         display: none;
     }
   }
@@ -14,7 +42,7 @@
   {
     
     
-    .Navbar{
+    .bottomNavbar{
         display: none;
     }
   }

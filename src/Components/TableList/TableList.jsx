@@ -9,6 +9,7 @@ import {
 } from "../../Redux/Actions/UserAction";
 import VerifiedIcon from '@mui/icons-material/Verified';
 import { pink } from '@mui/material/colors';
+import defaultProfile from '../../Images/Default_DP.jpg'
 
 function TableList({ person,page }) {
 
@@ -41,7 +42,7 @@ function TableList({ person,page }) {
             src={
               person.profilePicture
                 ? serverPublic + person.profilePicture
-                : serverPublic + "defaultProfile.png"
+                : defaultProfile
             }
             alt=""
             className="followerImage"

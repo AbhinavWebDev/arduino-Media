@@ -9,55 +9,56 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Modal from "@mui/material/Modal";
 import PostShare from "../PostShare/PostShare";
-import HomeIcon from "@mui/icons-material/Home";
-import SmsIcon from "@mui/icons-material/Sms";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import OtherHousesOutlinedIcon from '@mui/icons-material/OtherHousesOutlined';
+import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { Stack } from "@mui/material";
 import "./BottomAppBar.css";
 import defaultProfile from '../../Images/Default_DP.jpg'
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "100%",
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-  maxWidth: 500,
-  Width: 375,
-};
 
-const Item = styled(Paper)(({ theme }) => ({
+function ColorSchemesExample() {
+  const { user } = useSelector((state) => state.authReducer.authData);
+  const [addPost, setaddPost] = React.useState(null);
+  const handleOpenAdd = () => setaddPost(true);
+  const handleCloseAdd = () => setaddPost(false);
+  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
+  const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: "center",
   color: theme.palette.text.secondary,
 }));
-export default function BottomAppBar() {
-  const { user } = useSelector((state) => state.authReducer.authData);
-  const [addPost, setaddPost] = React.useState(null);
-  const handleOpenAdd = () => setaddPost(true);
-  const handleCloseAdd = () => setaddPost(false);
-  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+
+
   return (
-    <div className="Navbar">
-      <Box sx={{ width: "100%" }}>
-        <Stack>
+    <>
+
+<div class="bottomNavbar">
+<Stack>
           <Item>
             <div
-              style={{ display: "flex", gap: "1.75rem", overflow: "scroll" }}
-            >
+              style={{ display: "flex", gap: "8%" }}
+           >
               <IconButton color="inherit">
                 <Link
                   style={{ textDecoration: "none", color: "black" }}
                   to="../home"
                 >
-                  <HomeIcon sx={{ fontSize: 33 }} />
+                  <OtherHousesOutlinedIcon sx={{ fontSize: 33 }} />
                 </Link>
               </IconButton>
               <IconButton color="inherit">
@@ -65,12 +66,12 @@ export default function BottomAppBar() {
                   style={{ textDecoration: "none", color: "black" }}
                   to="../chatMobile"
                 >
-                  <SmsIcon sx={{ fontSize: 33 }} />
+                  <MessageOutlinedIcon sx={{ fontSize: 33 }} />
                 </Link>
               </IconButton>
 
-              <AddCircleIcon
-                sx={{ mt: 1, fontSize: 40, color: "black" }}
+              <AddOutlinedIcon
+                sx={{ mt:1,fontSize: 40, color: "black" }}
                 onClick={handleOpenAdd}
               />
 
@@ -79,12 +80,12 @@ export default function BottomAppBar() {
                   style={{ textDecoration: "none", color: "black" }}
                   to="../Suggestion"
                 >
-                  <FavoriteIcon sx={{ fontSize: 33 }} />
+                  <FavoriteBorderOutlinedIcon sx={{ fontSize: 33 }} />
                 </Link>
               </IconButton>
               <IconButton color="inherit">
                 <Link
-                  style={{ textDecoration: "none", color: "black" }}
+                  style={{ textDecoration: "none", color: "pink" }}
                   to={`/profile/${user._id}`}
                 >
                   <Avatar
@@ -96,8 +97,8 @@ export default function BottomAppBar() {
                   />
                 </Link>
               </IconButton>
-            </div>
-          </Item>
+              </div>
+              </Item>
         </Stack>
         <Modal
           open={addPost}
@@ -112,7 +113,16 @@ export default function BottomAppBar() {
             <PostShare />
           </Box>
         </Modal>
-      </Box>
-    </div>
+</div>
+
+
+
+
+    </>
   );
 }
+
+export default ColorSchemesExample;
+
+
+

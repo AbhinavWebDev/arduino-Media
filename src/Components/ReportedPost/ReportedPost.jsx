@@ -50,11 +50,6 @@ export default function NestedList() {
   useEffect(() => {
     dispatch(getTimelinePosts(2244));
   }, []);
-//  function call(){
-//     useEffect(() => {
-//       dispatch(getTimelinePosts(2244));
-//     }, [])
-//   }
   return (
     <>
     <List
@@ -70,7 +65,7 @@ export default function NestedList() {
       <ListItemButton onClick={handleClick}>
                   
                     <ListItemText primary='Post' />
-                    <ListItemText primary='User' />
+                    <ListItemText primary='User Name' />
                     <ListItemText primary='Likes' />
                     <ListItemText primary='Reports' />
                     {open ? <ExpandLess /> : <ExpandMore />}
@@ -95,7 +90,7 @@ export default function NestedList() {
         alt="Live from space album cover"
       />
     
-                    <ListItemText primary={post.firstName} />
+                    <ListItemText style={{marginLeft:'230px'}} primary={post.firstName} />
                     <ListItemText primary={post.likes.length} />
                     <ListItemText primary={post.report.length} />
                     <Fab onClick={handleOpen} 
@@ -139,6 +134,7 @@ export default function NestedList() {
                   </ListItemButton>
                   <Collapse in={open} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
+                      <Typography style={{marginLeft:'30px'}}>Reasons</Typography>
                       {post.report.map((reason) => {
                        return <ListItemButton sx={{ pl: 4 }}>
                         

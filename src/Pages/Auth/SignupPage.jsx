@@ -5,7 +5,7 @@ import {
   Card,
   CardContent,
   CardActions,
-  Button,
+
   CardHeader,
 } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,7 +23,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import OTP from "../../Components/OtpInput/Otp";
-import { IconButton, Snackbar } from "@mui/material";
+import {Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import * as authApi from "../../Api/AuthRequest";
 
@@ -36,8 +36,8 @@ const style = {
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
-  p: 4,
   maxWidth: 500,
+  
 };
 const useStyle = makeStyles((theme) => ({
   padding: {
@@ -125,7 +125,7 @@ console.log('otp status',Otpverify);
 
   return (
     <>
-      <Grid container justify="center" spacing={1}>
+      <Grid container justify="center" spacing={1} >
         <Grid item md={6}>
           <Card className={classes.padding}>
             <div className="image">
@@ -140,8 +140,9 @@ console.log('otp status',Otpverify);
             >
               {({ dirty, isValid, values, handleChange, handleBlur }) => {
                 return (
+                
                   <Form>
-                    <CardContent>
+                    <CardContent  >
                       <Grid item container spacing={3} justify="center">
                         <Grid item xs={12} sm={6} md={6}>
                           <Field
@@ -217,7 +218,7 @@ console.log('otp status',Otpverify);
                         variant="contained"
                         color="primary"
                         type="Submit"
-                        className={classes.button}
+                        
                       >
                         REGISTER
                       </Button>

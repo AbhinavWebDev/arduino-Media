@@ -14,11 +14,7 @@ import BottomAppBar from '../../Components/BottomAppBar/BottomAppBar'
 function home() {
   return (
     <>
-    <div style={{position: 'fixed',bottom: '0',zIndex: '5' }}>
-    <BottomAppBar />
-    </div>
-
-    {/* <ClippedDrawer/> */}
+    
    
           <UserTopbar />
    
@@ -40,7 +36,9 @@ function home() {
       
     </div>
   
-        
+    <div >
+    <BottomAppBar />
+    </div>
       
     </>
   )
